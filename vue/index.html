@@ -1,0 +1,190 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <!-- Title  -->
+    <title>Amado - Furniture Ecommerce Template | Home</title>
+    
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+    
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="css/core-style.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="css/vue.css">
+  </head>
+    
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+    
+    <div id="app-2">
+      <span v-bind:title="message">
+        내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다!
+      </span>
+    </div>
+    
+    <div id="app-3">
+      <p v-if="seen">이제 나를 볼 수 있어요</p>
+    </div>
+    
+    <div id="app-4">
+      <ol>
+        <li v-for="todo1 in todos"> <!-- app4.todos.push({ text: 'New item' }) -->
+          {{ todo1.text }}  
+        </li>
+      </ol>
+    </div>
+   
+    
+    <div id="app-5">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">메시지 뒤집기</button>
+    </div>
+    
+    <div id="app-6">
+      <p>{{ message }}</p>
+      <input v-model="message">
+    </div>
+    
+    <div id="app-7">
+      <ol>
+        <!-- 
+          이제 각 todo-item 에 todo 객체를 제공합니다.
+          화면에 나오므로, 각 항목의 컨텐츠는 동적으로 바뀔 수 있습니다. 
+          또한 각 구성 요소에 "키"를 제공해야합니다 (나중에 설명 됨).
+         -->
+        <todo-item
+          v-for="item in groceryList"
+          v-bind:todo="item"
+          v-bind:key="item.id">
+        </todo-item>
+      </ol>
+    </div>
+    
+    <div id="app-8">
+      <p>{{ foo }}</p>
+      <!-- obj.foo는 더이상 변하지 않습니다! -->
+      <button v-on:click="foo = 'baz'">Change it</button>
+    </div>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    
+    <div id="example">
+      <p>원본 메시지: "{{ message }}"</p>
+      <p>역순으로 표시한 메시지: "{{ reversedMessage }}"</p>
+    </div>
+    
+    <div id="demo">{{ fullName }}</div>
+    <div id="watch-example">
+      <p>
+        yes/no 질문을 물어보세요:
+        <input v-model="question">
+      </p>
+      <p>{{ answer }}</p>
+    </div>
+    
+    <ul id="example-2">
+      <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+      </li>
+    </ul>
+    
+    <div id="todo-list-example">
+      <input
+        v-model="newTodoText"
+        v-on:keyup.enter="addNewTodo"
+        placeholder="Add a todo"
+      >
+      <ul>
+        <li
+          is="todo-item2"
+          v-for="(todo, index) in todos"
+          v-bind:key="todo.id"
+          v-bind:title="todo.title"
+          v-on:remove="todos.splice(index, 1)"
+        ></li>
+      </ul>
+    </div>
+    
+    <div id="example-1">
+      <button v-on:click="counter += 1">Add 1</button>
+      <p>위 버튼을 클릭한 횟수는 {{ counter }} 번 입니다.</p>
+    </div>
+    
+    <div id="example-3">
+      <button v-on:click="say('hi')">Say hi</button>
+      <button v-on:click="say('what')">Say what</button>
+    </div>
+    
+    <!-- model에 value값이 {{}}에 들어간다. -->
+    <div id='example-33'>
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames">
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+      <label for="mike">Mike</label>
+      <br>
+      <span>체크한 이름: {{ checkedNames }}</span>
+    </div>
+    
+    <!-- `picked` 는 선택시 문자열 "a" 입니다 -->
+    <input type="radio" v-model="picked" value="a">
+    
+    <!-- `toggle` 는 true 또는 false 입니다 -->
+    <input type="checkbox" v-model="toggle">
+    
+    <!-- `selected`는 "ABC" 선택시 "abc" 입니다 -->
+    <select v-model="selected">
+      <option value="abc">ABC</option>
+    </select>
+    
+    <div id='example-34'>
+      <span v-for="n in 10">{{ n }} </span>
+    </div>
+    
+    <div id="example-21">
+      <simple-counter></simple-counter>
+      <simple-counter></simple-counter>
+      <simple-counter></simple-counter>
+    </div>
+    
+    <div id="counter-event-example">
+      <p>{{ total }}</p>
+      <button-counter v-on:increment="incrementTotal"></button-counter>
+      <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+    
+    <div id="currency-ex1">
+      <currency-input v-model="price"></currency-input>
+    </div>
+    
+    <div id="demo1">
+      <button v-on:click="show = !show">
+        Toggle
+      </button>
+      <transition name="fade">
+        <p v-if="show">hello</p>
+      </transition>
+    </div>
+
+
+  <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+  <script src="js/jquery/jquery-2.2.4.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/active.js"></script>
+  <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="js/ssamhandmade.js"></script>
+  </body>
+</html>
+
